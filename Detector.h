@@ -1,6 +1,6 @@
-// Description: Defines the Detector class for modeling detectors in physics experiments.
+// Description: Defines the Detector class for modeling the particle detector.
 // Author: Leo Feasby
-// Date: 08/03/2024
+// Date: 15/03/2024
 
 #ifndef DETECTOR_H
 #define DETECTOR_H
@@ -20,18 +20,19 @@ public:
   ~Detector(); // Destructor
 
   // Setters and getters
-  void setDetectorType(const std::string& type);
-  void setStatus(bool status);
-  std::string getDetectorType() const;
-  bool getStatus() const;
+  void set_detector_type(const std::string& type);
+  void set_status(bool status);
+  std::string get_detector_type() const;
+  bool get_status() const;
 
   // Functionality
-  void turnOn();
-  void turnOff();
-  int detectParticle(const Lepton& particle) const;
+  void turn_on();
+  void turn_off();
+  int detect_particle(const Lepton& particle) const;
 
   // Utility
-  void printInfo() const;
+  void print_info() const;
 };
 
 #endif 
+

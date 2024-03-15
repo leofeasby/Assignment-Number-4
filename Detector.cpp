@@ -1,6 +1,6 @@
-// Description: This file defines the Detector class, which models detectors for particle detection in physics experiments.
+// Description: Defines the Detector class for particle detection modeling
 // Author: Leo Feasby
-// Date: 08/03/2024
+// Date: 15/03/2024
 
 #include "Detector.h"
 #include <iostream>
@@ -12,7 +12,7 @@ Detector::Detector()
 Detector::Detector(const std::string& type) 
   : status(false) 
 {
-  // Validate the detector type before setting it
+  // Validate detector type before setting
   if (type == "tracker" || type == "calorimeter" || type == "muon chamber") 
   {
     this->detector_type = type;
@@ -26,9 +26,9 @@ Detector::Detector(const std::string& type)
 
 Detector::~Detector() {}
 
-void Detector::setDetectorType(const std::string& type) 
+void Detector::set_detector_type(const std::string& type) 
 {
-  // Similar validation as in the constructor
+  // Validate detector type as in constructor
   if (type == "tracker" || type == "calorimeter" || type == "muon chamber") 
   {
     this->detector_type = type;
@@ -39,32 +39,32 @@ void Detector::setDetectorType(const std::string& type)
   }
 }
 
-void Detector::setStatus(bool status) 
+void Detector::set_status(bool status) 
 {
   this->status = status;
 }
 
-std::string Detector::getDetectorType() const 
+std::string Detector::get_detector_type() const 
 {
   return this->detector_type;
 }
 
-bool Detector::getStatus() const 
+bool Detector::get_status() const 
 {
   return this->status;
 }
 
-void Detector::turnOn() 
+void Detector::turn_on() 
 {
   this->status = true;
 }
 
-void Detector::turnOff() 
+void Detector::turn_off() 
 {
   this->status = false;
 }
 
-int Detector::detectParticle(const Lepton& particle) const 
+int Detector::detect_particle(const Lepton& particle) const 
 {
   if (!status) 
   {
@@ -72,18 +72,18 @@ int Detector::detectParticle(const Lepton& particle) const
     return 0;
   }
 
-  if ((detector_type == "tracker" && (particle.getParticleType() == "electron" || particle.getParticleType() == "muon")) ||
-      (detector_type == "calorimeter" && particle.getParticleType() == "electron") ||
-      (detector_type == "muon chamber" && particle.getParticleType() == "muon")) 
+  if ((detector_type == "tracker" && (particle.get_particle_type() == "electron" || particle.get_particle_type() == "muon")) ||
+      (detector_type == "calorimeter" && particle.get_particle_type() == "electron") ||
+      (detector_type == "muon chamber" && particle.get_particle_type() == "muon")) 
   {
-    std::cout << particle.getParticleType() << (particle.getCharge() == 1 ? " (antiparticle)" : "") << " was detected\n";
+    std::cout << particle.get_particle_type() << (particle.get_charge() == 1 ? " (antiparticle)" : "") << " was detected\n";
     return 1;
   }
 
   return 0;
 }
 
-void Detector::printInfo() const 
+void Detector::print_info() const 
 {
   std::cout << "Detector Type: " << this->detector_type
             << "\nStatus: " << (this->status ? "On" : "Off") << '\n';
